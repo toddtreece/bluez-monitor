@@ -1,0 +1,28 @@
+[package]
+name = "bluez-monitor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-stream = "0.3.3"
+async-trait = "0.1.57"
+bluer = { version = "0.15.0", features = ["full"] }
+dirs = "4.0.0"
+env_logger = "0.9.0"
+futures-util = "0.3.21"
+hostname = "0.3.1"
+hyper = { version = "0.14.20", features = ["full"] }
+lazy_static = "1.4.0"
+log = { version = "0.4.17", features = ["kv_unstable"] }
+openssl = { version = "0.10.41", features = ["vendored"] }
+prometheus = "0.13.1"
+prost = "0.11.0"
+prost-types = "0.11.1"
+regex = "1.6.0"
+reqwest = "0.11.11"
+serde = { version = "1.0.143", features = ["serde_derive"] }
+serde_json = "1.0.83"
+snap = "1.0.5"
+thiserror = "1.0.32"
+tokio = { version = "1.20.1", features = ["full"] }
+toml = "0.5.9"

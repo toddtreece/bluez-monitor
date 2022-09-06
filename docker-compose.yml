@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--enable-feature=remote-write-receiver'
+    ports:
+      - 9090:9090
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/local-config.yaml
+
+#  bluez_monitor:
+#    build: 
+#      context: ./ 
+#      dockerfile: Dockerfile
+#    volumes:
+#      - "./:/home/bluez/monitor"
+#    cap_add:
+#      - "NET_ADMIN"
+#    network_mode: host
+
+volumes:
+    prometheus: {}

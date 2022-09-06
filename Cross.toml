@@ -1,0 +1,12 @@
+[target.aarch64-unknown-linux-gnu]
+#image = "rustcross:dbus-arm64"
+zig = "2.28"
+pre-build = [
+  "dpkg --add-architecture $CROSS_DEB_ARCH",
+  "apt-get update && apt-get --assume-yes install pkg-config libssl-dev:$CROSS_DEB_ARCH libdbus-1-dev:$CROSS_DEB_ARCH",
+]
+
+[build.env]
+passthrough = [
+	"PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig",
+]
